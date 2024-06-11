@@ -43,10 +43,13 @@ export class Punto1Component {
   }
 
   duplicar(producto:Producto){
-
     this.carrito.agregarProducto(producto);
-
   }
 
+  eliminar(producto:Producto){
+    this.carrito.productos.splice(this.carrito.productos.indexOf(producto),1);
+    this.carrito.total -= producto.precio.valueOf();
+    this.mensaje = "El Producto ha sido eliminado del carrito";
+  }
 
 }

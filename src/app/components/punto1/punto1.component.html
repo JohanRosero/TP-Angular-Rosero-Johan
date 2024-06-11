@@ -1,7 +1,8 @@
 <div class="container mt-3 mb-3">
     <div class="row">
         <div class="fixed-bottom carrito btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <img class="mt-2" src="../../../assets/shopping_cart_black_48dp.svg" alt="">
+            <span class="badge text-bg-warning rounded-pill ms-5">{{carrito.productos.length}}</span>
+            <img src="../../../assets/shopping_cart_black_48dp.svg" alt="">
         </div>
         <div class="col">
             <div class="row row-cols-1 row-cols-md-2 g-2">
@@ -33,7 +34,7 @@
                             <div *ngFor="let p of carrito.productos" class="card mb-2">
                                 <div class="row g-0">
                                     <div class="col">
-                                        <img [src]="p.imagen" class="img-fluid rounded-start" alt="...">
+                                        <img [src]="p.imagen" class="img-fluid rounded-start h-100" alt="...">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -41,7 +42,8 @@
                                             <p class="card-text">{{p.descripcion}}</p>
                                             <p class="card-text"><small class="text-muted">{{p.precio}}</small></p>
                                         </div>
-                                        <button type="button" class="btn btn-warning" (click)="duplicar(p)">Duplicar Producto</button>
+                                        <button type="button" class="btn btn-warning m-2" (click)="duplicar(p)">Duplicar</button>
+                                        <button type="button" class="btn btn-danger m-2" (click)="eliminar(p)">Quitar</button>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +51,7 @@
                         <div class="modal-footer">
                             <p class="fs-4 fst-bold">total $ : <strong class="fs-3">{{carrito.total}}</strong></p>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer" *ngIf="carrito.total!=0">
                             <button type="button" class="btn btn-warning">Confirmar compra</button>
                         </div>
                     </div>
