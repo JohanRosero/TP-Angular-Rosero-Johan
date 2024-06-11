@@ -1,0 +1,51 @@
+img {
+    height: 10rem;
+    width: auto;
+}
+
+
+.modal.fade .modal-dialog {
+    transition: transform 1s ease-out;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.difuminado {
+    filter: blur(2px);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.play {
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.play:hover {
+    transform: scale(1.02);
+}
+
+#palabras {
+    background: -webkit-linear-gradient(90deg, #ffda57, #eeaacc, #aae5ee);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(90deg, #fbd54e, #eeaacc, #aae5ee);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.cajaInfo {
+    border: 2px solid rgba(13, 134, 247, 0.719);
+    border-radius: 10px;
+}
+
+.cajaInfo:hover {
+    transform: scale(1.1);
+    border: 2px solid rgba(248, 158, 223, 0.719);
+}
+
+.fondo {
+    background-image: url('../../../assets/images/background.jpg');
+}

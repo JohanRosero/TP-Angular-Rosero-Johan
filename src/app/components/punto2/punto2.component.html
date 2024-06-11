@@ -1,0 +1,153 @@
+<div class="container-fluid fondo">
+    <div class="row">
+        <div class="col-sm-3 col position-relative">
+            <div class="card text-center position-absolute start-50 top-50 translate-middle cajaInfo shadow-lg">
+                <div class="card-header fs-4 fst-italic">
+                    <h5>Juego de las palabras</h5>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Tu partida</h5>
+                    <p class="card-text">Palabra {{iteracion}} / 8</p>
+                    <p class="card-text">Aciertos : {{partida.aciertos}}</p>
+                    <p class="card-text">Errores : {{partida.errores}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="container pt-3 pb-2">
+                    <div class="card text-center" id="palabras">
+                        <div class="card-body">
+                            <h5 class="card-title fs-1"> Palabra {{palabraActual}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="position-relative">
+                <!-- contenedor de juego -->
+                <div class="row row-cols-1 row-cols-md-2 g-2 pb-3">
+                    <div *ngFor="let p of opciones" class="col-sm-6 col p-1 " data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop" [ngClass]="{'difuminado': difuminado}">
+                        <div class="card shadow-lg " (click)="tomarOpcion(p[0])">
+                            <img [src]="p[1]" class="card-img-top" alt="foto">
+                            <div class="d-grid gap-2">
+                                <button class="btn fs-4 fst-bold">{{p[0]}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Boton  -->
+                <div class="translate-middle play" type="button" *ngIf="difuminado" (click)="iniciar()">
+                    <img src="../../../assets/images/numeros/1486486316-arrow-film-movie-play-player-start-video_81236.svg"
+                        id="play" alt="...">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col position-relative">
+            <div class="card text-center position-absolute start-50 top-50 translate-middle  cajaInfo shadow-lg">
+                <div class="card-header fs-4 fst-italic">
+                    <h5>Seguinos en las redes                         
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <img src="../../../assets/images/dedes.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"> <strong class="fs-3">¿ </strong> Cuantas <strong
+                            class="fs-4">{{opcion}} </strong> tiene <strong class="fs-4">"{{palabraActual}}" ?</strong>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body row">
+                    <div *ngFor="let o of posibilidades" class="col-3 col p-1 m-0">
+                        <div class="card shadow-lg ">
+                            <div class="d-grid gap-2">
+                                <button class="btn fs-4 fst-bold btn-outline-warning " data-bs-toggle="modal" type="button"
+                                    (click)="puntuar(o)" data-bs-target="#staticBackdrop2">{{o}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop2" *ngIf="!difuminado" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">{{mensaje}}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body row">
+                    <div class="col-3 col p-1 m-0"></div>
+                    <div class="col-6 col p-1 m-0">
+                        <div class="card shadow-lg ">
+                            <!-- Button trigger modal para continuar-->
+                            <div class="d-grid gap-2" *ngIf="!finalizar">
+                                <button class="btn fs-4 fst-bold btn-outline-success" type="button" (click)="continuar()"
+                                    data-bs-dismiss="modal">Siguiente palabra</button>
+                            </div>
+                            <div class="d-grid gap-2" *ngIf="finalizar">
+                                <!-- Button trigger modal para finalizar-->
+                                <button type="button" class="btn fs-4 fst-bold btn-outline-success" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    ver resultados
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 col p-1 m-0"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal finalizar-->
+    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">¡ Genial , intentalo nuevamente cuando quieras !
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col p-1 m-2">
+                        <div class="card shadow-lg ">
+                            <div class="d-grid gap-2">
+                                <div class="card-body">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel"> Player {{partida.jugador}}
+                                    </h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tus aciertos
+                                        {{partida.aciertos}}
+                                    </h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tus Errores {{partida.errores}}
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal"
+                        (click)="reiniciar()">¡Intentar otra vez¡</button>
+                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal"
+                        [routerLink]="['/home']">¡Hasta la Proxima¡</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

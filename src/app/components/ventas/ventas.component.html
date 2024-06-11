@@ -1,0 +1,89 @@
+<div class="container-fluid ventas">
+    <div class="row">
+        <div class="col">
+            <div class="container p-3 ">
+                <div class="card pt-3 pb-3 form-ticket">
+                    <div class="card-body">
+                        <h5 class="card-title">Punto 5</h5>
+                        <p class="card-text">
+                            En otro componente diferente al formulario, se debe mostrar mediante una lista
+                            (angular-datatable) todos los
+                            tickets vendidos . Además, también en una sección de resumen se debe mostrar un resumen de
+                            las ventas de
+                            tickets por tipo de espectador y el total general. Desde la Lista se debe poder ir al
+                            formulario de carga de un
+                            tickets.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container-fluid pb-3 col">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                            <li class="nav-item m-1">
+                                <button type="button" class="btn btn-primary btn-md" [routerLink]="['/form-ticket/0']"
+                                    routerLinkActive="router-link-active">Registrar Nuevo</button>                       
+                                    <li class="nav-item m-1">
+                                        <div class="btn-group btn-group-md" role="group" aria-label="Small button group">
+                                            <button type="button" class="btn btn-outline-primary"(click)="ver('local')">Local</button>
+                                            <button type="button" class="btn btn-outline-primary"(click)="ver('')">Todos</button>
+                                            <button type="button" class="btn btn-outline-primary"(click)="ver('extranjero')">Extranjero</button>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item m-1">
+                                        <form class="d-flex" role="search">
+                                            <input class="form-control me-2" aria-label="Search" disabled value="Total Ventas  {{total | currency}}">
+                                          </form>
+                                    </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <table class="table table-striped table-sm text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Dni</th>
+                        <th scope="col">Precio Real</th>
+                        <th scope="col">Tipo de Espectador</th>
+                        <th scope="col">Precio Cobrado</th>
+                        <th scope="col">Fecha de Cobro</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of auxiliar">
+                        <th scope="row">{{item.id}}</th>
+                        <td>{{item.dni}}</td>
+                        <td>{{item.precioReal | currency:'ARS '}}</td>
+                        <td>{{item.tipoEspectador}}</td>
+                        <td>{{item.precioCobrado | currency }}</td>
+                        <td>{{item.fechaCobro | date | uppercase}}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-outline-primary"
+                                    (click)="update(item.id)">Modificar</button>
+                                <button type="button" class="btn btn-outline-primary"
+                                    (click)="delete(item.id)">Eliminar</button>
+                            </div>
+
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

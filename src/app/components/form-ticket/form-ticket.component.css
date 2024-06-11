@@ -1,0 +1,11 @@
+.teatro{
+    background-image: url('../../../assets/images/teatro.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.form-ticket{
+    opacity: 0.95;
+}

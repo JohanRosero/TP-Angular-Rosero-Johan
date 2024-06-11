@@ -1,0 +1,72 @@
+<div class="container-fluid teatro">
+    <div class="row">
+        <div class="col">
+            <div class="container p-3 ">
+                <div class="card pt-3 pb-3 form-ticket" >
+                    <div class="card-body">
+                        <h5 class="card-title">Punto 3</h5>
+                        <p class="card-text">Una organización de Eventos de Teatro quiere administrar el proceso de
+                            venta de
+                            ticket (por ventanilla), por lo
+                            pronto la información se ingresa mediante un FORMULARIO.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rou">
+        <div class="col ">
+            <div class="container p-3">
+                <div class="card form-ticket">
+                    <h5 class="card-header">Formulario de <strong *ngIf="accion==='edit'">Modificación</strong><strong
+                            *ngIf="accion==='add'">Registro</strong></h5>
+                    <div class="card-body">
+                        <form >
+                            <div class="row mb-3 form-ticket">
+                                <label for="inputDni" class="col-sm-3 col-form-label">DNI</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="dni" id="inputDni"
+                                        [(ngModel)]="ticket.dni" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputPrecioReal" class="col-sm-3 col-form-label">Precio Real</label>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" name="precioReal" id="inputPrecioReal"
+                                        [(ngModel)]="ticket.precioReal" [value]="ticket.precioReal">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="selectTipoPasajero" class="col-sm-3 col-form-label">Tipo de
+                                    Espectador</label>
+                                <div class="col-sm-9">
+                                    <select id="tipoEspectador" [(ngModel)]="ticket.tipoEspectador"
+                                        name="tipoEspectador" class="form-control" (change)="calcularDescuento()">
+                                        <option selected>Selecciona ...</option>
+                                        <option *ngFor="let t of tipo" [value]="t[0]">{{t[1]}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputFecha" class="col-sm-3 col-form-label">Fecha de Cobro</label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" name="fechaDeCobro" id="inputFecha"
+                                        [(ngModel)]="ticket.fechaCobro">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label *ngIf="ticket.precioReal && ticket.tipoEspectador">Precio Cobrado : $
+                                    {{ticket.precioCobrado}}</label>
+                            </div>
+                            <button type="submit" class="btn btn-outline-success" *ngIf="accion==='add'"
+                                (click)="addTicket()">Registrar</button>
+                            <button type="submit" class="btn btn-outline-primary" *ngIf="accion==='edit'"
+                                (click)="updateTicket()">Modificar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

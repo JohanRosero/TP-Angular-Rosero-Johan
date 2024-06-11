@@ -1,0 +1,79 @@
+<div class="container mt-3 mb-3">
+    <div class="row">
+        <div class="fixed-bottom carrito btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <img class="mt-2" src="../../../assets/shopping_cart_black_48dp.svg" alt="">
+        </div>
+        <div class="col">
+            <div class="row row-cols-1 row-cols-md-2 g-2">
+                <div *ngFor="let p of productos" class="col-md-4 col-sm-6 col p-2">
+                    <div class="card shadow-lg">
+                        <img [src]="p.imagen" class="card-img-top producto" alt="foto">
+                        <div class="card-body">
+                            <h5 class="card-title">{{p.nombre}}</h5>
+                            <p class="card-text text-uppercase">{{p.descripcion}}</p>
+                            <p class="card-text"><strong class="fs-3">${{p.precio}}</strong><span
+                                    class="fs-1 fst-italic"> 15% off</span></p>
+                            <div class="align-middle">
+                                <a class="btn btn-primary mb-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="agregarCarrito(p)">Agregar al carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Tus Productos</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div *ngFor="let p of carrito.productos" class="card mb-2">
+                                <div class="row g-0">
+                                    <div class="col">
+                                        <img [src]="p.imagen" class="img-fluid rounded-start" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{p.nombre}}</h5>
+                                            <p class="card-text">{{p.descripcion}}</p>
+                                            <p class="card-text"><small class="text-muted">{{p.precio}}</small></p>
+                                        </div>
+                                        <button type="button" class="btn btn-warning" (click)="duplicar(p)">Duplicar Producto</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <p class="fs-4 fst-bold">total $ : <strong class="fs-3">{{carrito.total}}</strong></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning">Confirmar compra</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Información</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{mensaje}}</p>
+                        </div>      
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver Carrito</button>              
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
